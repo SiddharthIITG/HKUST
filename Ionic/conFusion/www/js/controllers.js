@@ -69,7 +69,7 @@ angular.module('conFusion.controllers', [])
   };    
 })
 
-.controller('MenuController', ['$scope', 'menuFactory', 'baseURL', function($scope, menuFactory, baseURL) {
+.controller('MenuController', ['$scope', 'menuFactory','favoriteFactory', 'baseURL', '$ionicListDelegate' function($scope, menuFactory, favoriteFactory, baseURL, $ionicListDelegate) {
             // baseURL is being used to access the images. 
             $scope.baseURL = baseURL;
             
@@ -112,6 +112,11 @@ angular.module('conFusion.controllers', [])
     
             $scope.toggleDetails = function() {
                 $scope.showDetails = !$scope.showDetails;
+            };
+              $scope.addFavorite = function (index) {
+                console.log("index is " + index);
+                favoriteFactory.addToFavorites(index);
+                $ionicListDelegate.closeOptionButtons();
             };
         }])
 
